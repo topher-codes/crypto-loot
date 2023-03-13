@@ -2,30 +2,26 @@ import { getUserFromCookie } from '@/lib/auth'
 import { cookies } from 'next/headers'
 import Link from 'next/link'
 import Card from '@/components/Card'
-import Navbar from '@/components/Navbar'
-import Glasspane from '@/components/Glasspane'
 
 const HomeLinks = [
   {
     name: 'Dashboard',
-    href: '/dashboard',
+    href: '/home/dashboard',
   },
   {
     name: 'Profile',
-    href: '/profile',
+    href: '/home/profile',
   },
   {
     name: 'Settings',
-    href: '/settings',
+    href: '/home/settings',
   },
 ]
 
 export default async function Home() {
   const user = await getUserFromCookie(cookies())
   return (
-  <Glasspane>
     <div className="w-full h-screen flex flex-col items-center mx-auto bg-slate-200">
-      <Navbar />
       <h1 className="text-4xl font-bold">Hello {user?.firstName}, Welcome Back!</h1>
       <div className="w-full flex flex-row justify-center">
       {HomeLinks.map((link) => (
@@ -38,6 +34,5 @@ export default async function Home() {
       </div>
 
     </div>
-  </Glasspane>
   )
 }
